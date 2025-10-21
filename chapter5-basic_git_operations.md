@@ -9,7 +9,7 @@ Commits tem o mesmo formato dos outros objetos Git: tipo, tamanho, delimitador (
 - Author: Nome, e-mail e timestamp da pessoa que fez a modificação original.
 - Committer: Nome, e-mail e timestamp da pessoa que efetivamente aplicou o commit (num merge, por exemplo, pode ser diferente do autor).
 - Mensagem: Descrição do commit
-- Parent (hashes do commit pai): Em um comit inicial, não há parent. Em commits normais, há um único parent. Em merges, há dois ou mais parent.
+- Parent (hashes do commit pai): Em um comit inicial, não há parent. Em commits normais, há um único parent e é essa informação que permite rastrear de qual branch veio um commit, seguindo a cadeia de commits pelo campo `parent`. Em merges, há dois ou mais parent.
 
 Um commit é um registro permanente de um conjunto de mudanças no repositório Git, representando um ponto específico e versionado da história do projeto.
 
@@ -65,6 +65,7 @@ As duas últimas colunas nas linhas de author e committer são:
   - chore: manutenção, tarefas auxiliares  
   - perf: melhorias de desempenho  
   - ci: alterações em pipelines ou configuração de integração contínua  
+  - journal: controle interno do diário pesssoal
 - Faça commits pequenos e coesos, com uma única unidade lógica de mudança  
 - Referencie issues ou tickets quando aplicável  
 - Evite mensagens vagas ou genéricas  
