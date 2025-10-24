@@ -77,7 +77,7 @@ git pull origin main
 git merge feature/login-page
 ```
 
-Se houver conflitos:
+Conflitos podem acontecer se houverem edições no mesmo arquivo em diferentes branches. Se houver conflitos, edite os arquivos com conflito (as duas edições estarão presentes para que você escolha qual está correta):
 
 ```bash
 # Abrir e resolver conflitos  
