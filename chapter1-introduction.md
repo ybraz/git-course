@@ -2,7 +2,7 @@
 
 ## Chapter 1 - Introduction do Git and GitHub
 
-Git e GitHub são soluções completamente diferentes. Git é um Distributed version-control system, enquanto GitHub é Repository hosting service.
+Git e GitHub são soluções completamente diferentes. Git é um Distributed Version Control System (DVCS), enquanto GitHub é Repository hosting service.
 
 Git permite rastrear mudanças em arquivos em qualquer diretório, que é chamado de repositório. Ele cria snapshots (commits) e rastreia as mudanças a partir desses snapshots.tteste.py
 - Todo arquivo tem um hash para o Git
