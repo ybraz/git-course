@@ -77,17 +77,58 @@ git pull origin main
 git merge feature/login-page
 ```
 
-Se houver conflitos:
+Um **conflito de merge** ocorre quando duas branches modificam **a mesma parte** de um arquivo de maneiras diferentes.  
+Nesses casos, o Git **não consegue decidir sozinho** qual versão manter e pede que você resolva manualmente.
+
+Exemplo clássico:
+- Você altera a linha 10 do `README.md` na branch `main`.
+- Outra pessoa altera **a mesma linha** na branch `feature`.
+- Quando você executa `git merge feature`, o Git detecta as duas versões e interrompe o merge, sinalizando um conflito.
+
+Quando há conflitos, o Git:
+1. **Interrompe o merge.**
+2. Exibe mensagens no terminal informando quais arquivos estão em conflito.
+3. Marca os arquivos problemáticos no `git status` com `both modified`.
+4. Insere **marcadores especiais dentro do arquivo**, mostrando as duas versões:
+
+```text
+<<<<<<< HEAD
+Esta é a versão da sua branch atual (ex: main)
+=======
+Esta é a versão da branch que está sendo mesclada (ex: feature)
+>>>>>>> feature
+```
+
+Passos para resolver conflitos
 
 ```bash
-# Abrir e resolver conflitos  
-nvim arquivo_em_conflito.txt  
-  
-# Marcar como resolvido  
-git add arquivo_em_conflito.txt  
-  
-# Finalizar o merge  
+# 1. Abrir o arquivo em conflito e editar
+nvim arquivo_em_conflito.txt
+
+# 2. Remover os marcadores (<<<<<<<, =======, >>>>>>>)
+#    Escolher ou combinar as mudanças
+
+# 3. Marcar como resolvido
+git add arquivo_em_conflito.txt
+
+# 4. Finalizar o merge
 git commit
+```
+
+Comandos úteis:
+
+```bash
+# Verificar arquivos em conflito
+git status
+
+# Abortar o merge em andamento
+git merge --abort
+
+# Ver apenas commits de merge
+git log --merges --oneline
+
+# Visualizar grafo do histórico
+git log --oneline --graph --all
 ```
 
 **Histórico (simplificado)**
