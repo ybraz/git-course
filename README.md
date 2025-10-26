@@ -26,7 +26,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 - Conhecimentos básicos de terminal (bash/zsh ou equivalente)  
 - Git instalado na máquina local  
-- Conta no GitHub (ou plataforma equivalente)  
+- Conta no GitHub
 - Editor de texto ou IDE de sua preferência (ex: Neovim, VSCode)
 
 ---
