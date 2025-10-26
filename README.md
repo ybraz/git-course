@@ -18,6 +18,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 | 7        | Clonando e Modificando Repositórios Públicos | `clone`, `fork`, `fetch`, `pull` e atualização de repositórios existentes                              |
 | 8        | Merge e Resolução de Conflitos               | Estratégias de merge, conflitos comuns e práticas recomendadas                                        |
 | 9        | GitHub e Repositórios Remotos               | `remote`, `push`, `pull`, `set-url`, `origin` e colaboração em equipe                                 |
+|10        | Git Push, Fetch, and Pull                   | `push`, `pull`, `fetch`                                                                               | 
 
 ---
 
