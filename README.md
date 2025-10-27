@@ -1,6 +1,7 @@
 # Complete Git Course
 
-Bem-vindo ao **Complete Git Course**, um guia prático e teórico para dominar o Git — desde os comandos mais básicos até o trabalho com repositórios remotos e fluxos de colaboração profissional.  
+Essas são minhas notas do **Complete Git Course**, um guia prático e teórico para dominar o Git — desde os comandos mais básicos até o trabalho com repositórios remotos e fluxos de colaboração profissional.
+
 Este material foi desenvolvido com uma abordagem progressiva: cada capítulo constrói a base para o próximo.
 
 ---
