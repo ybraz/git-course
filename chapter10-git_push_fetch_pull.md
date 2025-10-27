@@ -11,7 +11,7 @@ Os comandos `git push`, `git fetch` e `git pull` são fundamentais para esse flu
 +-----------+             +-----------+              +-----------+           +---------+
 
       ^                        ^                        ^                        ^
-      |             git merge origin/main               |      git fetch         |
+      |              git merge FETCH_HEAD               |      git fetch         |
       |<------------------------------------------------|<-----------------------|
       |                              git pull (faz tudo)                         |
       |<-------------------------------------------------------------------------|
@@ -29,13 +29,13 @@ Comandos:
 - git fetch                      → Remote Repo → Local Repo (atualiza refs, sem mudar WD)  
     (Baixa as atualizações do remoto e atualiza os ponteiros, sem integrar nada ao histórico local)
 
-- git log HEAD..origin/main      → Lista commits que estão no remoto e ainda não existem localmente  
+- git log FETCH_HEAD      → Lista commits que estão no remoto e ainda não existem localmente  
     (Útil para revisar antes de integrar as mudanças)
 
-- git diff HEAD..origin/main     → Mostra as diferenças de conteúdo entre local e remoto  
+- git diff FETCH_HEAD    → Mostra as diferenças de conteúdo entre local e remoto  
     (Permite ver linha a linha o que mudaria se fosse feito um merge)
 
-- git merge origin/main          → Integra as mudanças do remoto na branch local ativa  
+- git merge FETCH_HEAD          → Integra as mudanças do remoto na branch local ativa  
     (Avança o ponteiro local — fast-forward ou cria merge commit se necessário)
 
 - git pull                       → Faz fetch + merge/switch automaticamente  
@@ -70,11 +70,17 @@ $ git fetch
 # Mostra os branches remotos disponíveis
 $ git branch -r
 
+# Visualizar último commit baixando no FETCH_HEAD
+$ cat .git/FETCH_HEAD
+
 # Verifica diferenças entre local e remoto
-$ git log HEAD..origin/main
+$ git log FETCH_HEAD
+
+# Analisa as diferenças exatas entre local e remoto
+$ git diff FETCH_HEAD
 
 # Realiza merge das mudanças remotas no repositório local
-$ git merge origin/main
+$ git merge FETCH_HEAD
 ```
 
 **Vantagens do fetch:**
@@ -100,14 +106,14 @@ Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
 
 nothing to commit, working tree clean
 
-$ git log HEAD..origin/main
+$ git log FETCH_HEAD
 commit 3d834e3a6be7113d58db7365b57e54d8160115ba (origin/main, origin/HEAD)
 Author: Yuri Braz <ybraz@live.com>
 Date:   Sun Oct 26 05:47:26 2025 -0300
 
     docs: Remove redundant text from prerequisites section
 
-$ git diff HEAD..origin/main
+$ git diff FETCH_HEAD
 diff --git a/README.md b/README.md
 index 643a73f..694dae8 100644
 --- a/README.md
@@ -122,7 +128,7 @@ index 643a73f..694dae8 100644
  
  ---
 
-$ git merge origin/main
+$ git merge FETCH_HEAD
 Updating 2e777ad..3d834e3
 Fast-forward
  README.md | 2 +-
