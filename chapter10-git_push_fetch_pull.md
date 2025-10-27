@@ -72,6 +72,9 @@ $ git branch -r
 
 # Verifica diferenças entre local e remoto
 $ git log HEAD..origin/main
+
+# Realiza merge das mudanças remotas no repositório local
+$ git merge origin/main
 ```
 
 **Vantagens do fetch:**
