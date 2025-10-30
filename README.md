@@ -8,19 +8,30 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ## 📚 Estrutura do Curso
 
-| Capítulo | Título                                      | Conteúdo Principal                                                                                   |
-|----------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| 1        | Introdução                                  | História do Git, conceitos fundamentais e motivação                                                   |
-| 2        | Instalação                                  | Instalação em diferentes sistemas operacionais e configurações iniciais                               |
-| 3        | Shell Básico                                | Navegação no terminal e comandos essenciais                                                           |
-| 4        | Como o Git Funciona                          | Arquitetura interna, snapshots vs. diffs, SHA-1 e objetos                                              |
-| 5        | Operações Básicas do Git                     | `init`, `add`, `commit`, `status`, `log` e controle de histórico                                      |
-| 6        | Branches e HEAD                              | Conceitos de ramificação, `checkout`, `branch`, `merge`, HEAD e fluxo de trabalho                      |
-| 7        | Clonando e Modificando Repositórios Públicos | `clone`, `fork`, `fetch`, `pull` e atualização de repositórios existentes                              |
-| 8        | Merge e Resolução de Conflitos               | Estratégias de merge, conflitos comuns e práticas recomendadas                                        |
-| 9        | GitHub e Repositórios Remotos               | `remote`, `push`, `pull`, `set-url`, `origin` e colaboração em equipe                                 |
-|10        | Git Push, Fetch, and Pull                   | `push`, `pull`, `fetch`                                                                               |
-|11        | Pull Requests (PRs)                         | Revisão de código, abertura de PRs, status checks, estratégias de merge e GitHub CLI                  |
+| Capítulo | Título | Conteúdo Principal |
+|---------:|--------|--------------------|
+| 1 | [Introdução](./chapter1-introduction.md) | História do Git, conceitos fundamentais e motivação |
+| 2 | [Instalação](./chapter2-installation.md) | Instalação em diferentes sistemas operacionais e configurações iniciais |
+| 3 | [Shell Básico](./chapter3-basic_shell.md) | Navegação no terminal e comandos essenciais |
+| 4 | [Como o Git Funciona](./chapter4-how_git_works.md) | Arquitetura interna, snapshots vs. diffs, SHA-1 e objetos |
+| 5 | [Operações Básicas do Git](./chapter5-basic_git_operations.md) | `init`, `add`, `commit`, `status`, `log` e controle de histórico |
+| 6 | [Branches e HEAD](./chapter6-git_branches_and_head.md) | Conceitos de ramificação, `checkout`, `branch`, `merge`, HEAD e fluxo de trabalho |
+| 7 | [Clonando e Modificando Repositórios Públicos](./chapter7-cloning_modifying_public_repos.md) | `clone`, `fork`, `fetch`, `pull` e atualização de repositórios existentes |
+| 8 | [Merge e Resolução de Conflitos](./chapter8-merging_branches.md) | Estratégias de merge, resolução de conflitos e práticas recomendadas |
+| 9 | [GitHub e Repositórios Remotos](./chapter9-github_remote_repositories.md) | `remote`, `origin`, `set-url` e colaboração em equipe |
+| 10 | [Git Push, Fetch e Pull](./chapter10-git_push_fetch_pull.md) | `push`, `pull`, `fetch` |
+| 11 | [Pull Requests (PRs)](./chapter11-pull_requests.md) | Revisão de código, abertura de PRs, status checks, estratégias de merge e GitHub CLI |
+| 12 | [Git Log e Shortlog](./chapter12-git_log_shortlog.md) | `git log`, formatação, filtros e `git shortlog` |
+| 13 | [Git Tags](./chapter13-git_tags.md) | Tags lightweight e anotadas, boas práticas e releases |
+| 14 | [Rebasing](./chapter14-rebasing.md) | `rebase` interativo, linearização de histórico e resolução de conflitos |
+| 15 | [Ignorando Arquivos no Git](./chapter15-igoring_files_in_git.md) | `.gitignore`, padrões glob, regras e exceções |
+| 16 | [Reset, Revert e Amend](./chapter16-git_reset_rever_amend.md) | `reset` (`--soft`, `--mixed`, `--hard`), `revert`, `commit --amend` |
+
+## 🧭 Como usar este repositório
+
+- Clique nos títulos da tabela acima para abrir o capítulo correspondente.
+- Leia em sequência ou consulte pontualmente quando precisar de um comando ou conceito.
+- Use a busca do editor para encontrar rapidamente tópicos específicos (ex.: "rebase", "tags").
 
 ---
 
