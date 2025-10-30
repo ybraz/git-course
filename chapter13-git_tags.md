@@ -2,125 +2,179 @@
 
 ## 1) Onde o Git armazena referências (refs)
 
-- Refs (branches e tags) ficam em:
-    .git/refs/heads/        # branches
-    .git/refs/tags/         # tags (cada arquivo contém um SHA-1/ SHA-256 dependendo do Git)
+- **Refs (branches e tags):**
 
-- Quando houver **muitas refs**, o Git pode "empacotar" refs em:
-    .git/packed-refs
-  Nesse arquivo cada linha associa um SHA à ref (economia de inodes / performance).
+  ```text
+  .git/refs/heads/        # branches
+  .git/refs/tags/         # tags (cada arquivo contém um SHA-1/SHA-256)
+  ```
+
+- **Refs empacotadas:**
+
+  ```text
+  .git/packed-refs
+  ```
+
+  Quando há muitas refs, o Git escreve pares `SHA refname` nesse arquivo para economizar inodes e melhorar performance.
 
 ## 2) Lightweight tag — o que é e onde fica
 
-- Criação:
-    git tag v1.2.3
+- **Criação:**
 
-- Internamente:
-  - O Git cria um arquivo simples `.git/refs/tags/v1.2.3` cujo conteúdo é o SHA do commit apontado.
-  - Não há objeto "tag" no banco de objetos. É só um ponteiro (como uma branch, porém normalmente imutável).
-  - Se o repo estiver com refs empacotadas, o ponteiro pode acabar dentro de `.git/packed-refs`.
+  ```bash
+  git tag v1.2.3
+  ```
 
-- Como inspecionar:
-    git rev-parse refs/tags/v1.2.3
-    git show-ref --tags
-    cat .git/refs/tags/v1.2.3              # (às vezes o arquivo está empacotado, então ver packed-refs)
+- **Internamente:**
+  - O Git cria o arquivo `.git/refs/tags/v1.2.3` contendo o SHA do commit apontado.
+  - Não há objeto "tag" no banco de objetos; é apenas um ponteiro (como uma branch, porém normalmente imutável).
+  - Se as refs estiverem empacotadas, a entrada pode ir para `.git/packed-refs`.
 
-- Conclusão: lightweight = apenas um *ref file* apontando diretamente para o objeto alvo (tipicamente um commit).
+- **Como inspecionar:**
+
+  ```bash
+  git rev-parse refs/tags/v1.2.3
+  git show-ref --tags
+  cat .git/refs/tags/v1.2.3
+  ```
+
+  Se o arquivo não existir, confira o conteúdo de `.git/packed-refs`.
+
+- **Conclusão:** lightweight é apenas um arquivo de ref apontando diretamente para o objeto alvo (tipicamente um commit).
 
 ## 3) Annotated tag — o que é e onde fica
 
-- Criação:
-    git tag -a v2.0.0 -m "Release 2.0"     # annotated
-    git tag -s v2.0.0 -m "Signed release"  # annotated + assinatura
+- **Criação:**
 
-- Internamente:
-  - O Git cria um **objeto** do tipo `tag` no banco de objetos (`.git/objects/...`). Esse objeto é um *tag object* que contém:
-    - a referência para o objeto alvo (ex.: commit SHA),
-    - o tipo do alvo (`commit`),
-    - o autor/`tagger` (nome, email, data),
-    - uma mensagem (mensagem de tag),
-    - opcionalmente dados de assinatura (se assinado).
-  - Em seguida o Git cria `.git/refs/tags/v2.0.0` contendo o SHA do **objeto tag**, não do commit.
-  - Assim: refs/tags/v2.0.0 -> (SHA do objeto tag) -> (internamente aponta para o commit SHA).
+  ```bash
+  git tag -a v2.0.0 -m "Release 2.0"
+  git tag -s v2.0.0 -m "Signed release"
+  ```
 
-- Como inspecionar:
-    git rev-parse refs/tags/v2.0.0           # retorna SHA do objeto tag
-    git cat-file -p <sha-do-objeto-tag>     # mostra o conteúdo do objeto tag (target, tagger, msg)
-    git cat-file -p <sha-do-objeto-tag> | sed -n '1,10p'   # ver cabeçalho e target
-    git show v2.0.0                          # mostra a mensagem e o commit
+- **Internamente:**
+  - O Git cria um **objeto do tipo `tag`** em `.git/objects/...` contendo:
+    - referência para o objeto alvo (commit, tree ou blob);
+    - tipo do alvo (`commit`, `tree`, etc.);
+    - `tagger` (autor, email, data);
+    - mensagem da tag;
+    - assinatura (se houver).
+  - O arquivo `.git/refs/tags/v2.0.0` guarda o SHA do objeto `tag`, não do commit.
+  - Cadeia: `refs/tags/v2.0.0` → SHA do objeto tag → commit alvo.
 
-- Conclusão: annotated = *objeto tag* + ref apontando para esse objeto; carrega metadados (autor, data, msg) e pode ser assinado.
+- **Como inspecionar:**
+
+  ```bash
+  git rev-parse refs/tags/v2.0.0
+  git cat-file -p <sha-do-objeto-tag>
+  git cat-file -p <sha-do-objeto-tag> | sed -n '1,10p'
+  git show v2.0.0
+  ```
+
+- **Conclusão:** annotated combina objeto tag + ref apontando para ele; carrega metadados e pode ser assinado.
 
 ## 4) Observações sobre tipos de alvo e resolução de refs
 
-- Um *tag object* normalmente aponta para um `commit`, mas **pode apontar para qualquer objeto** (tree, blob) — raro, mas possível.
-- Quando você usa comandos que esperam um commit, Git faz _dereference_ automaticamente (i.e., se o ref aponta para um objeto tag, o Git resolve o objeto tag para o commit alvo).
-- Comandos úteis:
-    git rev-parse v2.0.0          # pode retornar SHA do objeto tag
-    git rev-parse v2.0.0^{commit}# força a resolução ao commit alvo
-    git rev-list -n 1 v2.0.0     # mostra o commit que aquela tag referencia
+- Um objeto tag geralmente aponta para um `commit`, mas pode referenciar qualquer objeto (`tree`, `blob`).
+- Quando comandos esperam um commit, o Git faz *dereference* automático (se a ref aponta para objeto tag, ele resolve até o commit).
+- **Comandos úteis:**
+
+  ```bash
+  git rev-parse v2.0.0
+  git rev-parse v2.0.0^{commit}
+  git rev-list -n 1 v2.0.0
+  ```
 
 ## 5) Packed-refs e por que aparecem
 
-- Quando há muitas refs (muitos tags), o Git pode mover entradas individuais de `.git/refs/tags/*` para `.git/packed-refs`.
-- O `packed-refs` armazena pares `SHA refname`, e pode ter uma linha `^<sha>` para anotated tag peeled lines.
-- Ferramentas que gerenciam histórico (ou pushes em massa) frequentemente levam à criação de `packed-refs`.
+- O Git pode mover refs individuais de `.git/refs/tags/*` para `.git/packed-refs` quando há muitas tags.
+- O arquivo `packed-refs` guarda pares `SHA refname` e pode incluir linhas `^<sha>` (peel) para annotated tags.
+- Pushes em massa e ferramentas de gerenciamento de histórico costumam gerar `packed-refs`.
 
-Inspecionar:
-    cat .git/packed-refs
+- **Inspecionar:**
+
+  ```bash
+  cat .git/packed-refs
+  ```
 
 ## 6) Assinatura (GPG) de tags
 
-- `git tag -s v2.1.0 -m "Release"` cria uma tag assinada. A assinatura fica no objeto tag.
-- Verificar:
-    git tag -v v2.1.0
+- **Criar tag assinada:**
 
-Assinaturas só existem nas **annotated tags** (porque há um objeto tag onde a assinatura é armazenada).
+  ```bash
+  git tag -s v2.1.0 -m "Release"
+  ```
 
-## 7) Pushing tags — o que é enviado ao remoto
+- **Verificar assinatura:**
 
-- `git push origin v1.2.3`
-  - envia o ref `refs/tags/v1.2.3` ao remoto. O conteúdo (SHA) empurrado será o SHA do arquivo refs/tags local:
-    - se lightweight: SHA do commit (o remoto terá refs/tags/v1.2.3 apontando direto para commit SHA).
-    - se annotated: SHA do objeto tag (o remoto receberá o objeto tag e um ref apontando para ele).
-- `git push origin --tags`
-  - empurra **todas** as tags locais que não existem no remoto.
-- Deletar tag no remoto:
-    git push origin :refs/tags/v1.2.3
-  (isso envia um "delete ref" request)
+  ```bash
+  git tag -v v2.1.0
+  ```
 
-- Importante: o remoto vai armazenar a mesma distinção annotated vs lightweight, porque os objetos/refs são transmitidos. Se o remoto já tiver uma tag com mesmo nome mas SHA diferente, o push normalmente será rejeitado a menos que forçado (forçar sobrescrever tags remotas é possível, porém perigoso e muitas vezes desabilitado nos servidores).
+Assinaturas só existem em annotated tags, pois dependem do objeto tag.
 
-## 8) Exemplos práticos de inspeção (comandos locais)
+## 7) Pushing tags — o que vai ao remoto
 
-- Ver todas as refs de tag e o que apontam:
-    git for-each-ref --format="%(refname) %(objecttype) %(objectname) %(taggername)" refs/tags
+- **Push de uma tag específica:**
 
-- Mostrar conteúdo do objeto tag:
-    git cat-file -p $(git rev-parse refs/tags/v2.0.0)
+  ```bash
+  git push origin v1.2.3
+  ```
 
-- Ver se uma tag local é lightweight (aponta diretamente para commit SHA) ou annotated:
-    # obtém SHA que o ref contém
-    sha=$(git rev-parse refs/tags/v1.2.3)
-    # verifica tipo do objeto
-    git cat-file -t $sha
+  - Lightweight: envia ref apontando direto para o commit.
+  - Annotated: envia o objeto tag e a ref apontando para ele.
 
-  Resultado:
-    commit    -> lightweight (ref contém commit SHA)
-    tag       -> annotated (ref contém objeto tag)
+- **Push de todas as tags locais:**
 
-- Resolver commit final de uma tag (independente do tipo):
-    git rev-parse v2.0.0^{commit}
+  ```bash
+  git push origin --tags
+  ```
 
-## 9) Por que escolher annotated vs lightweight (consequências práticas)
+- **Deletar tag no remoto:**
 
-- Annotated:
-  - Prós: metadados, possibilidade de assinatura, histórico auditável, melhor para releases formais.
-  - Contras: mais um objeto no banco (mínimo overhead).
-- Lightweight:
-  - Prós: simples, rápido, bom para marcações locais temporárias.
-  - Contras: sem autoria, sem assinatura, sem mensagem — informação perdida.
+  ```bash
+  git push origin :refs/tags/v1.2.3
+  ```
 
-Se você publica releases para terceiros, a disciplina favorece **annotated (assinadas)**. Se é só um atalho local, lightweight basta.
+O remoto preserva a distinção annotated vs lightweight. Se já existir uma tag homônima com SHA diferente, o push será rejeitado (salvo se forçado, recurso muitas vezes desabilitado).
+
+## 8) Exemplos práticos de inspeção
+
+- **Listar todas as tags com metadados:**
+
+  ```bash
+  git for-each-ref --format="%(refname) %(objecttype) %(objectname) %(taggername)" refs/tags
+  ```
+
+- **Mostrar conteúdo do objeto tag:**
+
+  ```bash
+  git cat-file -p $(git rev-parse refs/tags/v2.0.0)
+  ```
+
+- **Checar se a tag é lightweight ou annotated:**
+
+  ```bash
+  sha=$(git rev-parse refs/tags/v1.2.3)
+  git cat-file -t "$sha"
+  ```
+
+  Resultado `commit` → lightweight; resultado `tag` → annotated.
+
+- **Resolver o commit final de qualquer tag:**
+
+  ```bash
+  git rev-parse v2.0.0^{commit}
+  ```
+
+## 9) Por que escolher annotated vs lightweight
+
+- **Annotated:**
+  - Metadados, assinatura opcional, histórico auditável, ideal para releases públicas.
+  - Overhead mínimo (mais um objeto no banco).
+- **Lightweight:**
+  - Simples, rápido, útil para marcações locais temporárias.
+  - Sem autoria, assinatura ou mensagem.
+
+Para releases destinadas a terceiros, prefira **annotated (de preferência assinadas)**. Para atalhos locais, lightweight é suficiente.
 
 
