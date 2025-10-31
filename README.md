@@ -26,6 +26,8 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 | 14 | [Rebasing](./chapter14-rebasing.md) | `rebase` interativo, linearização de histórico e resolução de conflitos |
 | 15 | [Ignorando Arquivos no Git](./chapter15-igoring_files_in_git.md) | `.gitignore`, padrões glob, regras e exceções |
 | 16 | [Reset, Revert e Amend](./chapter16-git_reset_rever_amend.md) | `reset` (`--soft`, `--mixed`, `--hard`), `revert`, `commit --amend` |
+| 17 | [Git Hooks](./chapter17-git_hooks.md) | Hooks client-side e server-side, automação de validações e políticas |
+| — | [Git Stash](./git_stash.md) | Salvamento temporário de mudanças não comitadas |
 
 ## 🧭 Como usar este repositório
 
