@@ -1,56 +1,6 @@
 # Chapter 14 - Git Rebase
 
-## 1. Conceito central
-
-Rebase significa “mudar a base” de uma sequência de commits.  
-Em vez de criar um *merge commit*, o Git **reaplica os commits da sua branch** sobre uma nova base,  
-criando uma linha de histórico linear, como se o trabalho tivesse começado no ponto mais recente da branch principal.
-
-No fundo, o rebase não altera o conteúdo dos commits — ele **recria novos commits** com pais diferentes,  
-o que gera novos hashes (SHAs).
-
-## 2. Fluxo de trabalho — “rebase → merge fast-forward”
-
-### Situação inicial
-
-    main:     A---B---C
-    feature:  A---B---X---Y
-
-A branch `feature` saiu de `B`, mas `main` avançou até `C`.
-
-### Etapa 1 — Atualizar a feature (rebase)
-
-    git checkout feature
-    git fetch origin
-    git rebase origin/main
-
-O Git:
-1. Encontra a base comum entre as duas branches (aqui, o commit `B`);
-2. Extrai seus commits exclusivos (`X`, `Y`);
-3. Move o ponteiro da `feature` para `C`;
-4. Recria `X'` e `Y'` sobre `C`.
-
-Agora temos:
-
-    main:     A---B---C
-    feature:              C---X'---Y'
-
-Se houver conflitos, o rebase pausa em cada commit.  
-
-Você resolve, faz `git add <arquivos>` e segue com `git rebase --continue`.  
-
-Se quiser desistir, `git rebase --abort`.
-
-### Etapa 2 — Revisão e testes
-
-Você trabalha em `feature`, confirma que tudo está estável, e prepara para integrar na `main`.
-
-### Etapa 3 — Merge final (fast-forward)
-
-    git checkout main
-    git merge feature
-
-Como o histórico é linear, o Git simplesmente **avança o ponteiro da main** até o commit final da `feature`.  
+ 
 ## 1. Conceito central
 
 Rebase significa “mudar a base” de uma sequência de commits.
@@ -322,13 +272,8 @@ O rebase reescreve para mostrar como *poderia ter acontecido sem bifurcação*.
 - Não rebase branches que fazem parte de releases já marcadas.
 - Não rebase histórico público — isso reescreve o passado de todos.
 
-## 11. Reflexão filosófica
+## 11. Dicas finais
 
-O *merge* preserva a história como ela foi: com suas bifurcações, conflitos e reconciliações.
-O *rebase* reconta essa história de forma idealizada — linear, limpa, mas reconstruída.
-
-Ambos são legítimos.
-O primeiro expressa a **verdade cronológica**,
-o segundo, a **verdade lógica** do código.
-
-Saber quando usar cada um é compreender a diferença entre **história** e **narrativa**.
+- Prefira rebase para alinhar sua branch antes do merge final
+- Use `--force-with-lease` ao publicar rebase em branches pessoais
+- Evite rebase em histórico já compartilhado com o time

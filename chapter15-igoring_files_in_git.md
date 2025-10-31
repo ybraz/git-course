@@ -1,15 +1,8 @@
 # Chapter 15 - Ignoring Files in Git
 
-## 1. Filosofia do `.gitignore`
+## 1. Conceito
 
-O arquivo `.gitignore` é uma forma de **ensinar o Git a ignorar o que não deve ser versionado**.  
-Ele não é apenas uma conveniência técnica — é uma expressão de **disciplina e foco** no que realmente pertence ao histórico de um projeto.  
-
-A ideia é clara:  
-> O Git deve rastrear apenas *artefatos de valor intelectual duradouro* (código, configs, docs).  
-> Tudo o que é gerado, temporário ou pessoal deve ser ignorado.
-
-Assim, `.gitignore` separa o **produto do trabalho humano** do **ruído produzido pelas máquinas** (builds, caches, logs, etc.).
+O arquivo `.gitignore` define padrões para o Git ignorar arquivos e pastas que não devem ser versionados (builds, caches, logs, artefatos temporários, etc.). Mantém o repositório focado apenas no que é necessário para construir e entender o projeto.
 
 ---
 
@@ -175,12 +168,8 @@ Esse template cobre:
 
 ---
 
-## 8. Filosofia prática
+## 8. Dicas finais
 
-O `.gitignore` é, no fundo, uma forma de *limpeza moral* do repositório.  
-Ele separa o essencial (código-fonte, docs, configs necessárias) do acidental (artefatos locais e temporários).
-
-Ele impõe um princípio:  
-> O histórico de um projeto deve conter apenas o que alguém, no futuro, precisará para compreendê-lo e reconstruí-lo — nada mais.
-
-Se o repositório é um diário da mente, o `.gitignore` é a consciência que impede o excesso.
+- Crie o `.gitignore` no início do projeto e mantenha-o curto e objetivo.
+- Prefira templates por linguagem/plataforma e ajuste ao seu contexto.
+- Se algo já foi comitado por engano, use `git rm --cached` e adicione a regra correspondente.

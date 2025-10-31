@@ -1,11 +1,19 @@
-# Complete Git Course
+# Capítulo 1 — Introdução ao Git e GitHub
 
-## Chapter 1 - Introduction do Git and GitHub
+Nesta aula você vai:
+- Entender a diferença entre Git (controle de versão) e GitHub (hospedagem/remoto)
+- Ver como o Git rastreia mudanças por meio de commits (snapshots)
+- Reconhecer, em alto nível, como o Git identifica conteúdo por hash
 
-Git e GitHub são soluções completamente diferentes. Git é um Distributed Version Control System (DVCS), enquanto GitHub é Repository hosting service.
+Git e GitHub são coisas diferentes:
+- Git é um DVCS (Distributed Version Control System) — uma ferramenta local que versiona arquivos.
+- GitHub é um serviço de hospedagem que sincroniza e facilita colaboração em repositórios Git.
 
-Git permite rastrear mudanças em arquivos em qualquer diretório, que é chamado de repositório. Ele cria snapshots (commits) e rastreia as mudanças a partir desses snapshots.tteste.py
-- Todo arquivo tem um hash para o Git
-- O Git armazena de forma persistente um mapa dos hashs com pares de chave-valor
+Como o Git funciona (visão rápida):
+- Cada commit é um snapshot do projeto naquele instante.
+- Cada conteúdo armazenado é identificado por um hash (ex.: SHA-1), garantindo integridade.
+- O Git mantém um banco de objetos e referências (branches/tags) para navegar no histórico.
 
-GitHub serve para armazenar seus repositórios Git na nuvem e facilitar a colaboração remota.
+Sobre o GitHub (e plataformas similares):
+- Permite armazenar repositórios na nuvem, abrir Pull Requests, fazer code review e gerenciar issues.
+- Não é obrigatório para usar Git, mas é essencial para colaboração e backup.

@@ -67,6 +67,7 @@ O `HEAD` é uma **referência simbólica** para a branch ou commit atualmente at
   ```bash
   git checkout <branch>   # muda para uma branch
   git checkout <sha1>     # muda para um commit específico
+  ```
 
 Se fizermos checkout diretamente para um commit específico, entramos em um estado chamado detached HEAD, que significa que o HEAD está apontando para um commit específico mas não existe nenhum ponteiro de branch acompanhando seus novos commits.
 - Não é uma boa prática pois pode-se perder facilmente os commits por não haver um ponteiro registrado. Ou seja, fica mais difícil de fazer a gestão.

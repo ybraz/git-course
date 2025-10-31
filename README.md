@@ -6,7 +6,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 📚 Estrutura do Curso
+## Estrutura do Curso
 
 | Capítulo | Título | Conteúdo Principal |
 |---------:|--------|--------------------|
@@ -29,7 +29,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 | 17 | [Git Hooks](./chapter17-git_hooks.md) | Hooks client-side e server-side, automação de validações e políticas |
 | — | [Git Stash](./git_stash.md) | Salvamento temporário de mudanças não comitadas |
 
-## 🧭 Como usar este repositório
+## Como usar este repositório
 
 - Clique nos títulos da tabela acima para abrir o capítulo correspondente.
 - Leia em sequência ou consulte pontualmente quando precisar de um comando ou conceito.
@@ -37,7 +37,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 🛠️ Pré-requisitos
+## Pré-requisitos
 
 - Conhecimentos básicos de terminal (bash/zsh ou equivalente)  
 - Git instalado na máquina local  
@@ -46,7 +46,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 🧭 Fluxo de Trabalho Essencial
+## Fluxo de Trabalho Essencial
 
 1. **Crie um repositório local**  
    > `git init`
@@ -66,7 +66,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 🤝 Boas Práticas de Git
+## Boas Práticas de Git
 
 - Commits **claros e atômicos** — cada commit deve representar uma unidade lógica de mudança.  
 - Use **branches temáticas** (`feature/`, `fix/`, `hotfix/`) para organizar o desenvolvimento.  
@@ -76,7 +76,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 🌐 Integração com GitHub
+## Integração com GitHub
 
 - Colabore com Pull Requests (PRs) e Code Reviews.  
 - Utilize Issues e Projects para gerenciar tarefas.  
@@ -86,7 +86,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 📎 Recursos Adicionais
+## Recursos Adicionais
 
 - [Documentação Oficial do Git](https://git-scm.com/doc)  
 - [GitHub Docs](https://docs.github.com/)  
@@ -95,14 +95,7 @@ Este material foi desenvolvido com uma abordagem progressiva: cada capítulo con
 
 ---
 
-## 🧠 Reflexão Final
-
-> “O Git não é apenas uma ferramenta de versionamento, mas um **modo de pensar** o desenvolvimento: distribuído, colaborativo e com responsabilidade individual.”  
-> — *Inspirado no espírito do software livre*
-
----
-
-## 📜 Licença
+## Licença
 
 Este curso é distribuído sob a licença MIT.  
 Sinta-se livre para reutilizar, adaptar e compartilhar, mantendo os créditos.

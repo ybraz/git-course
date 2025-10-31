@@ -12,9 +12,9 @@ cada um altera o histórico de modo diferente, com graus variados de risco e pro
 `git reset` **move o ponteiro HEAD** (e opcionalmente o index e a árvore de trabalho) para um commit anterior.  
 É o comando mais poderoso — e potencialmente destrutivo — entre os três.
 
-### Filosofia
-Reset não “desfaz” o passado, ele **reescreve a linha do presente**.  
-Você diz ao Git: “finja que eu nunca avancei a partir daqui”.
+### Quando usar
+- Reorganizar commits locais antes de publicar
+- Desfazer commits recentes mantendo (soft) ou descartando (hard) mudanças
 
 ### Modos do reset
 
@@ -85,9 +85,9 @@ git checkout <sha-anterior>
 `git revert` **cria um novo commit que inverte outro**.  
 Não apaga o passado — adiciona um registro que o contradiz.
 
-### Filosofia
-Revert é o método “ético” de corrigir erros:  
-ele reconhece o erro **sem apagar a história**.
+### Quando usar
+- Desfazer mudanças já publicadas mantendo um histórico auditável
+- Reverter merges problemáticos com `-m`
 
 ### Uso básico
 ```bash
@@ -134,9 +134,9 @@ Por isso, é **seguro em branches públicas** ou já compartilhadas.
 `git commit --amend` altera o commit **mais recente**.  
 Serve para ajustar mensagens, incluir arquivos esquecidos ou pequenas correções.
 
-### Filosofia
-Amend é o “retocar” de um erro recente antes que o mundo o veja.  
-Ele refina o último gesto — mas não muda o passado distante.
+### Quando usar
+- Ajustar a mensagem do último commit
+- Incluir arquivos esquecidos no commit mais recente
 
 ### Uso
 
@@ -208,18 +208,9 @@ git checkout <sha>
 
 ---
 
-## 6. Resumo filosófico
+## 6. Resumo rápido
 
-- `reset` é **poder e perigo** — reescreve a história.  
-- `revert` é **honestidade** — mostra que houve erro e aprendizado.  
-- `amend` é **autocrítica imediata** — corrige o presente antes que vire passado.
-
-O primeiro exige responsabilidade,  
-o segundo exige humildade,  
-o terceiro exige atenção.
-
-Juntos, eles formam a tríade do controle de versões consciente:  
-reescrever, reconhecer, refinar.
-
----
+- `reset` (soft/mixed/hard): move HEAD; reescreve histórico local
+- `revert`: cria um commit que desfaz outro; seguro em branches públicas
+- `commit --amend`: reescreve somente o último commit
 

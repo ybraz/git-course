@@ -1,4 +1,9 @@
-# Chapter 13 - Git tags
+# Capítulo 13 — Git Tags
+
+Nesta aula você vai:
+- Entender a diferença entre lightweight e annotated tags
+- Saber onde as tags são armazenadas e como inspecioná-las
+- Aprender a criar, listar, enviar e remover tags (local e remoto)
 
 ## 1) Onde o Git armazena referências (refs)
 

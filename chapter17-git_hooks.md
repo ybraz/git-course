@@ -16,17 +16,9 @@ Exemplo de usos clássicos:
 
 ---
 
-## 2. Filosofia por trás dos hooks
+## 2. Quando usar hooks
 
-O hook é a materialização da **ética do hábito** no Git.  
-Ele transforma disciplina manual em coerência automatizada.
-
-> “Se um padrão é importante o suficiente para ser lembrado, ele deve ser automatizado.”
-
-O propósito do hook é garantir que certas práticas **não sejam opcionais**,  
-mas intrínsecas ao fluxo do projeto.
-
-Em outras palavras, os hooks são **a consciência automatizada do repositório**.
+Use hooks para automatizar verificações e tarefas frequentes: validar commits, rodar linters/testes rápidos, bloquear pushes indevidos, sincronizar ações pós-merge/push e aplicar políticas de contribuição.
 
 ---
 
@@ -245,15 +237,8 @@ Se um hook não rodar:
 
 ---
 
-## 12. Filosofia final
+## 12. Dicas finais
 
-Git Hooks são a fronteira entre **liberdade e disciplina**.  
-Eles transformam o repositório em um organismo vivo, que reage, valida e instrui.
-
-Enquanto o `.gitignore` decide o que deve ser esquecido,  
-e o `stash` guarda o que ainda não é definitivo,  
-os **hooks** são o **caráter automatizado** do projeto —  
-a parte que garante que, mesmo em silêncio, as boas práticas sempre acontecem.
-
-> O bom desenvolvedor escreve código funcional.  
-> O ótimo desenvolvedor cria ambientes que impedem o erro.
+- Mantenha hooks rápidos; delegue tarefas pesadas para CI
+- Compartilhe via `core.hooksPath` e versionamento
+- Mensagens claras em caso de falha ajudam a adoção

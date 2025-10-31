@@ -40,12 +40,12 @@ Mais comandos:
 - rg — (ripgrep) pesquisa recursiva rápida por padrão (substituto moderno do grep). Ex: `rg "password" ~/repos`
 - find — encontra arquivos por nome, tipo, data ou permissão. Ex: `find . -type f -name "*.sql"`
 - sed — editor de fluxo para substituir/transformar texto em pipelines. Ex: `sed 's/foo/bar/g' arquivo.txt`
-- awk — processador de texto poderoso para colunas e agregações. Ex: `awk '{print $1, $3}' access.log`
-- curl — faz requisições HTTP e transfere dados (API / download). Ex: `curl -sS https://api.ipify.org`
+- awk — processador de texto poderoso para colunas e agregações. Ex: `awk '{print $1, $3}' access.log`
+- curl — faz requisições HTTP e transfere dados (API / download). Ex: `curl -sS https://api.ipify.org`
 - ssh — conecta-se a outro host de forma segura. Ex: `ssh -p 2222 usuario@10.0.0.5`
 - scp — copia arquivos via SSH entre máquinas. Ex: `scp arquivo.zip user@host:/tmp/`
 - nc — netcat: liga/desliga conexões TCP/UDP, debug de portas e túnel simples. Ex: `nc -lvp 9001`
-- nmap — scanner de portas e descobrimento de rede. Ex: `nmap -sS -Pn 10.0.0.0/24`
+- nmap — scanner de portas e descobrimento de rede. Ex: `nmap -sS -Pn 10.0.0.0/24`
 - git — controle de versão distribuído; commits, branches e revisão. Ex: `git checkout -b feat/login && git commit -am "início"`
 - docker — gerencia containers (build/run/exec). Ex: `docker run --rm -it python:3.11 bash`
 - chmod — altera permissões de arquivos. Ex: `chmod 700 ~/.ssh/id_rsa`

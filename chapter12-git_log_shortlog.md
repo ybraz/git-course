@@ -1,5 +1,11 @@
-# Git Log and Git Shortlog
+# Git Log e Git Shortlog
 
+Nesta aula você vai:
+- Explorar o histórico de commits com filtros e formatações úteis
+- Gerar resumos por autor e por intervalo com `git shortlog`
+- Usar combinações práticas para investigações do dia a dia
+
+---
 O `git log` é a ferramenta mais completa para **investigar o histórico de commits**.
 
 Já o `git shortlog` é sua forma condensada — ideal para **resumos, estatísticas e changelogs**.
@@ -7,16 +13,10 @@ Já o `git shortlog` é sua forma condensada — ideal para **resumos, estatíst
 Este guia é um **passo a passo completo**, mostrando filtros, formatos e truques avançados para navegar o tempo no Git.
 
 ---
+## 1. Introdução rápida
 
-## 1. Fundamento filosófico
+`git log` navega e filtra o histórico de commits; `git shortlog` resume por autor/intervalo — use-os para investigar e gerar resumos práticos.
 
-No Git, o histórico não é uma linha do tempo cega — é um **grafo dirigido acíclico** de intenções humanas.
-
-O `log` é a janela para esse grafo; cada commit é um nó, cada "pai" é uma relação causal.
-
-Ler o histórico é compreender o raciocínio de quem veio antes.
-
----
 
 ## 2. O comando básico
 
@@ -96,13 +96,12 @@ git log v1.0.0..
 ```
 
 # commits após v1.0.0
-
----
-
-## 4. Formatação e modos de exibição
-
+Exemplo: listar commits após v1.0.0
 ### One-line
 
+- `man git-log`
+- `man git-shortlog`
+- Pro Git Book — capítulo de histórico
 ```bash
 git log --oneline
 ```
