@@ -1,0 +1,100 @@
+requirements-dev.txt
+
+# --- Python bytecode ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Distribution / packaging ---
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Installer logs ---
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Unit test / coverage reports ---
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# --- Type checker caches ---
+.mypy_cache/
+.pyre/
+.pytype/
+
+# --- Jupyter Notebook ---
+.ipynb_checkpoints/
+
+# --- Framework & app data (optional) ---
+instance/
+.webassets-cache
+*.sqlite3
+db.sqlite3
+media/
+
+# --- Scrapy ---
+.scrapy/
+
+# --- Sphinx documentation ---
+docs/_build/
+doc/_build/
+
+# --- PyBuilder ---
+target/
+
+# --- Virtual environments ---
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# --- Linters / formatters caches ---
+.ruff_cache/
+
+# --- IDEs and editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.swm
+.project
+.pydevproject
+.ropeproject/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log
